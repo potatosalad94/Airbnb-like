@@ -1,4 +1,5 @@
 class Flat < ApplicationRecord
+  has_many   :bookings
   belongs_to :user
   validates  :name, presence: true, uniqueness: { scope: :address }
   validates  :city, presence: true
