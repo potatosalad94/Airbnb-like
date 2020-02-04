@@ -1,0 +1,20 @@
+.flat{
+  margin: 30px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.flat-info{
+  flex-grow: 1;
+}
+
+.flat-booking{
+  width: 20vw;
+}
+
+.city{
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #484848;
+}

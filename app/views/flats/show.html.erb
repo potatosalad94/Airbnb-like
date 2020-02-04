@@ -1,3 +1,23 @@
+<% if @flat.photo.blank? %>
+
+  <div class="banner" style="background-color: #46cdcf">
+  </div>
+
+<% else %>
+
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @flat.photo.key %>');">
+  </div>
+
+<% end %>
+
 <div class="container">
-  <h1 class="page-title"><%= @flat.name %></h1>
+  <div class="flat">
+    <div class="flat-info">
+      <h2><%= @flat.name %></h2>
+      <p class="city"><%= @flat.city %></p>
+      <p><i class="fas fa-user-friends"></i> <%= @flat.max_guests %> guests</p>
+      <hr>
+    </div>
+    <div class="flat-booking border-1 rounded">test</div>
+  </div>
 </div>
