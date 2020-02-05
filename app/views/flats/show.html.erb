@@ -13,8 +13,15 @@
 <div class="container">
   <div class="flat">
     <div class="flat-info">
-      <h2><%= @flat.name %></h2>
-      <p class="city"><%= @flat.city %></p>
+      <div class="flat-info-header">
+        <div class="flat-info-header-title">
+          <h2><%= @flat.name %></h2>
+          <p class="city"><%= @flat.city %></p>
+        </div>
+        <div class="flat-info-header-avatar">
+
+        </div>
+      </div>
       <p><i class="fas fa-user-friends"></i> <%= @flat.max_guests %> guests</p>
       <hr>
     </div>
