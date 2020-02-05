@@ -6,15 +6,34 @@
 }
 
 .flat-info{
+  padding: 0 20px;
+  width: 50vw;
   flex-grow: 1;
+  margin: 0 40px 0 0;
 }
 
 .flat-booking{
-  width: 20vw;
+  width: 25vw;
+  padding: 20px;
 }
 
 .city{
   font-style: italic;
   margin-bottom: 20px;
+  color: #484848;
+}
+
+.flat-info-header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.flat-info-header-title{
+  margin-right: 20px;
+}
+
+.owner{
+  margin: 5px 0;
   color: #484848;
 }

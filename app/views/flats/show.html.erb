@@ -19,12 +19,21 @@
           <p class="city"><%= @flat.city %></p>
         </div>
         <div class="flat-info-header-avatar">
-
+          <%= cl_image_tag @flat.user.photo.key, class: 'avatar' %>
+          <p class="owner"><%= @flat.user.first_name %></p>
         </div>
       </div>
       <p><i class="fas fa-user-friends"></i> <%= @flat.max_guests %> guests</p>
       <hr>
+
+      <p><%= @flat.description %></p>
     </div>
-    <div class="flat-booking border-1 rounded">test</div>
+    <div class="flat-booking border bg-light rounded">
+      <h3><%= humanized_money @flat.price %>€ <span style="font-size: 13px;">per night</span></h3>
+      <hr>
+      <%= simple_form_for  do |f| %>
+
+      <% end %>
+    </div>
   </div>
 </div>
