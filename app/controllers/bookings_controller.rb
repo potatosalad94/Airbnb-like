@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
+    @user_bookings = current_user.bookings
   end
 
   def show
@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to flats_path
     else
-      raise
       render "flats/show"
     end
   end

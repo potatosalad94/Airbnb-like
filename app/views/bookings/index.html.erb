@@ -1,2 +1,32 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<div class="container">
+  <h1 class="page-title">My bookings</h1>
+  <% @user_bookings.each do |booking| %>
+    <div class="card-booking">
+
+      <%= cl_image_tag booking.flat.photo.key %>
+
+      <div class="card-booking-infos">
+        <h2><%= booking.flat.name %></h2>
+        <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
+        <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
+      </div>
+
+      <div class="card-booking-status">
+        <% if booking.status == true %>
+          <p>Booking status</p>
+          <i class="far fa-check-circle"></i>
+          <p id="status-confirmed">Confirmed</p>
+        <% elsif booking.status == false %>
+          <p>Booking status</p>
+          <i class="far fa-times-circle"></i>
+          <p id="status-declined">Declined</p>
+        <% else %>
+          <p>Booking status</p>
+          <i class="far fa-clock"></i>
+          <p id="status-pending">Pending</p>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
