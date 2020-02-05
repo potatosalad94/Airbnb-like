@@ -1,13 +1,9 @@
 <% if @flat.photo.blank? %>
-
   <div class="banner" style="background-color: #46cdcf">
   </div>
-
 <% else %>
-
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @flat.photo.key %>');">
   </div>
-
 <% end %>
 
 <div class="container">
@@ -25,14 +21,16 @@
       </div>
       <p><i class="fas fa-user-friends"></i> <%= @flat.max_guests %> guests</p>
       <hr>
-
       <p><%= @flat.description %></p>
     </div>
     <div class="flat-booking border bg-light rounded">
       <h3><%= humanized_money @flat.price %>€ <span style="font-size: 13px;">per night</span></h3>
       <hr>
-      <%= simple_form_for  do |f| %>
-
+      <%= simple_form_for [@flat, @booking] do |f| %>
+        <%= f.input :start_date, as: :date, html5: true %>
+        <%= f.input :end_date,   as: :date, html5: true %>
+        <%= f.input :number_of_guests, collection: 1..@flat.max_guests, label: 'Number of guests' %>
+        <%= f.submit 'Book now', class: 'btn btn-primary btn-lg btn-block' %>
       <% end %>
     </div>
   </div>
