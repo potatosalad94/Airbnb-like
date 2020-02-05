@@ -2,6 +2,7 @@ class Flat < ApplicationRecord
   has_many   :bookings
   belongs_to :user
   has_one_attached :photo
+  monetize :price_in_cents, as: "price"
   validates  :name, presence: true, uniqueness: { scope: :address }
   validates  :city, presence: true
   validates  :address, presence: true
