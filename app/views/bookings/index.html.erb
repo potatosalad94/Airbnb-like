@@ -1,32 +1,116 @@
 <div class="container">
-  <h1 class="page-title">My bookings</h1>
-  <% @user_bookings.each do |booking| %>
-    <div class="card-booking">
 
-      <%= cl_image_tag booking.flat.photo.key %>
-
-      <div class="card-booking-infos">
-        <h2><%= booking.flat.name %></h2>
-        <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
-        <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
-      </div>
-
-      <div class="card-booking-status">
-        <% if booking.status == true %>
-          <p>Booking status</p>
-          <i class="far fa-check-circle"></i>
-          <p id="status-confirmed">Confirmed</p>
-        <% elsif booking.status == false %>
-          <p>Booking status</p>
-          <i class="far fa-times-circle"></i>
-          <p id="status-declined">Declined</p>
+  <div class="booking-section">
+    <h1 class="page-title">My bookings</h1>
+    <% @user_bookings.each do |booking| %>
+      <div class="card-booking">
+        <% if booking.flat.photo.blank? %>
+          <div class="generic-flat">
+          </div>
         <% else %>
-          <p>Booking status</p>
-          <i class="far fa-clock"></i>
-          <p id="status-pending">Pending</p>
+          <%= cl_image_tag booking.flat.photo.key %>
         <% end %>
-      </div>
 
-    </div>
-  <% end %>
+        <div class="card-booking-infos">
+          <h2><%= booking.flat.name %></h2>
+          <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
+          <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
+        </div>
+
+        <div class="card-booking-status">
+          <% if booking.status == true %>
+            <p>Booking status</p>
+            <i class="far fa-check-circle"></i>
+            <p id="status-confirmed">Confirmed</p>
+          <% elsif booking.status == false %>
+            <p>Booking status</p>
+            <i class="far fa-times-circle"></i>
+            <p id="status-declined">Declined</p>
+          <% else %>
+            <p>Booking status</p>
+            <i class="far fa-clock"></i>
+            <p id="status-pending">Pending</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="host-section">
+    <h1 class="page-title">My guests</h1>
+    <% @user_flats.each do |flat| %>
+      <% flat.bookings.each do |booking| %>
+
+        <div class="card-booking">
+          <% if booking.flat.photo.blank? %>
+            <div class="generic-flat">
+            </div>
+          <% else %>
+            <%= cl_image_tag booking.flat.photo.key %>
+          <% end %>
+
+          <div class="card-booking-infos">
+            <h2><%= booking.flat.name %></h2>
+            <p>Your guest's name: <%= booking.user.first_name %></p>
+            <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
+            <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
+          </div>
+
+
+          <% if booking.status == nil %>
+            <div class="card-booking-status-guest">
+              <p>Booking status</p>
+              <div class="card-guest-status">
+                <%= link_to booking_accept_path(booking) do %>
+                  <div class="status">
+                    <i class="far fa-check-circle"></i>
+                    <p id="status-confirmed">Confirm</p>
+                  </div>
+                <% end %>
+                <%= link_to booking_decline_path(booking) do %>
+                  <div class="status">
+                    <i class="far fa-times-circle"></i>
+                    <p id="status-declined">Decline</p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="card-booking-status">
+              <% if booking.status == true %>
+                <div class="card-guest-status">
+                  <div class="status-active">
+                    <i class="far fa-check-circle"></i>
+                    <p id="status-confirmed">Confirmed</p>
+                  </div>
+                  <%= link_to booking_decline_path(booking) do %>
+                    <div class="status">
+                      <i class="far fa-times-circle"></i>
+                      <p id="status-declined">Declined</p>
+                    </div>
+                  <% end %>
+                </div>
+              <% else booking.status == false %>
+                <div class="card-guest-status">
+                  <%= link_to booking_accept_path(booking) do %>
+                    <div class="status">
+                      <i class="far fa-check-circle"></i>
+                      <p id="status-confirmed">Confirmed</p>
+                    </div>
+                  <% end %>
+                  <div class="status-active">
+                    <i class="far fa-times-circle"></i>
+                    <p id="status-declined">Declined</p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
+
 </div>

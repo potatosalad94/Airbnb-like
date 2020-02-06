@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   def index
     @user_bookings = current_user.bookings
+    @user_flats = current_user.flats
   end
 
   def show
@@ -25,6 +26,20 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def accept_booking
+    @booking = Booking.find(params[:booking_id])
+    @booking.status = true
+    @booking.save
+    redirect_to bookings_path
+  end
+
+  def decline_booking
+    @booking = Booking.find(params[:booking_id])
+    @booking.status = false
+    @booking.save
+    redirect_to bookings_path
   end
 
   private

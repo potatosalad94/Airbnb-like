@@ -5,12 +5,19 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  margin: 20px 0;
 }
 
 .card-booking img {
   height: 100%;
   width: 120px;
   object-fit: cover;
+}
+
+.generic-flat{
+  background-color: #46CDCF;
+  width: 120px;
+  height: 120px;
 }
 
 .card-booking h2 {
@@ -53,5 +60,38 @@
 #status-pending{
   color: #FFA500;
   font-weight: bold;
+}
+
+.host-section{
+  margin-top: 30px;
+}
+
+.card-booking-status-guest{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 10px;
+  text-align: center;
+  p{
+    margin: 10px;
+  }
+}
+
+.card-guest-status{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  p{
+    margin: 10px;
+  }
+  .status{
+    opacity: 0.3;
+    &:hover{
+      opacity: 1;
+    }
+  }
+  .status-active{
+    opacity: 1;
+  }
 }
 
