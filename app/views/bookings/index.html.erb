@@ -61,13 +61,13 @@
             <div class="card-booking-status-guest">
               <p>Booking status</p>
               <div class="card-guest-status">
-                <%= link_to booking_accept_path(booking) do %>
+                <%= link_to booking_accept_path(booking), class: 'no-deco' do %>
                   <div class="status">
                     <i class="far fa-check-circle"></i>
                     <p id="status-confirmed">Confirm</p>
                   </div>
                 <% end %>
-                <%= link_to booking_decline_path(booking) do %>
+                <%= link_to booking_decline_path(booking), class: 'no-deco' do %>
                   <div class="status">
                     <i class="far fa-times-circle"></i>
                     <p id="status-declined">Decline</p>
@@ -81,26 +81,26 @@
                 <div class="card-guest-status">
                   <div class="status-active">
                     <i class="far fa-check-circle"></i>
-                    <p id="status-confirmed">Confirmed</p>
+                    <p id="status-confirmed">Confirm</p>
                   </div>
-                  <%= link_to booking_decline_path(booking) do %>
+                  <%= link_to booking_decline_path(booking), class: 'no-deco' do %>
                     <div class="status">
                       <i class="far fa-times-circle"></i>
-                      <p id="status-declined">Declined</p>
+                      <p id="status-declined">Decline</p>
                     </div>
                   <% end %>
                 </div>
               <% else booking.status == false %>
                 <div class="card-guest-status">
-                  <%= link_to booking_accept_path(booking) do %>
+                  <%= link_to booking_accept_path(booking), class: 'no-deco' do %>
                     <div class="status">
                       <i class="far fa-check-circle"></i>
-                      <p id="status-confirmed">Confirmed</p>
+                      <p id="status-confirmed">Confirm</p>
                     </div>
                   <% end %>
                   <div class="status-active">
                     <i class="far fa-times-circle"></i>
-                    <p id="status-declined">Declined</p>
+                    <p id="status-declined">Decline</p>
                   </div>
                 </div>
               <% end %>
