@@ -4,6 +4,10 @@ class FlatsController < ApplicationController
 
   def index
     @flats = Flat.all
+    @search = params[:search]
+    if @search.present?
+      @flats = Flat.where("city ILIKE ?", "%#{@search}%")
+    end
   end
 
   def show
