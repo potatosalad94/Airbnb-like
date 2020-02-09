@@ -1,49 +1,52 @@
-<div class="container">
-  <h1 class="page-title">Check out all the available flats</h1>
-
+<div class="container-fluid d-flex">
   <div class="cards">
-    <% @flats.each do |flat| %>
-      <%= link_to flat_path(flat), class: 'card-decoration' do %>
-        <% if flat.photo.blank? %>
+    <h1 class="page-title">Check out all the available flats</h1>
+    <div class="cards-query">
+      <% @flats.each do |flat| %>
+        <%= link_to flat_path(flat), class: 'card-decoration' do %>
+          <% if flat.photo.blank? %>
 
-          <div class="card-trip">
-            <div class="card-category">
-            </div>
-            <div class="card-trip-infos">
-              <div>
-                <h2><%= flat.name %></h2>
-                <p><%= flat.city %></p>
+            <div class="card-trip">
+              <div class="card-category">
               </div>
-              <h2 class="card-trip-pricing"><%= humanized_money flat.price %>€</h2>
-              <% if flat.user.photo.blank? %>
-                <%= image_tag "user.png", class: 'card-trip-user avatar-bordered' %>
-              <% else %>
-                <%= cl_image_tag flat.user.photo.key, class: 'card-trip-user avatar-bordered' %>
-              <% end %>
-            </div>
-          </div>
-
-        <% else %>
-
-          <div class="card-trip">
-            <%= cl_image_tag flat.photo.key %>
-            <div class="card-trip-infos">
-              <div>
-                <h2><%= flat.name %></h2>
-                <p><%= flat.city %></p>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= flat.name %></h2>
+                  <p><%= flat.city %></p>
+                </div>
+                <h2 class="card-trip-pricing"><%= humanized_money flat.price %>€</h2>
+                <% if flat.user.photo.blank? %>
+                  <%= image_tag "user.png", class: 'card-trip-user avatar-bordered' %>
+                <% else %>
+                  <%= cl_image_tag flat.user.photo.key, class: 'card-trip-user avatar-bordered' %>
+                <% end %>
               </div>
-              <h2 class="card-trip-pricing"><%= humanized_money flat.price %>€</h2>
-              <% if flat.user.photo.blank? %>
-                <%= image_tag "user.png", class: 'card-trip-user avatar-bordered' %>
-              <% else %>
-                <%= cl_image_tag flat.user.photo.key, class: 'card-trip-user avatar-bordered' %>
-              <% end %>
             </div>
-          </div>
 
+          <% else %>
+
+            <div class="card-trip">
+              <%= cl_image_tag flat.photo.key %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= flat.name %></h2>
+                  <p><%= flat.city %></p>
+                </div>
+                <h2 class="card-trip-pricing"><%= humanized_money flat.price %>€</h2>
+                <% if flat.user.photo.blank? %>
+                  <%= image_tag "user.png", class: 'card-trip-user avatar-bordered' %>
+                <% else %>
+                  <%= cl_image_tag flat.user.photo.key, class: 'card-trip-user avatar-bordered' %>
+                <% end %>
+              </div>
+            </div>
+
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-
+  <!-- map to be added here -->
 </div>
+
+

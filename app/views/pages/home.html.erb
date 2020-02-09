@@ -20,7 +20,7 @@
 <div class="container">
   <h1 class="page-title">Check out all the available flats</h1>
 
-  <div class="cards">
+  <div class="cards-home">
     <% @flats.each do |flat| %>
       <%= link_to flat_path(flat), class: 'card-decoration' do %>
         <% if flat.photo.blank? %>
