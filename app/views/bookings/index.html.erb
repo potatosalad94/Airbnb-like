@@ -61,13 +61,13 @@
             <div class="card-booking-status-guest">
               <p>Booking status</p>
               <div class="card-guest-status">
-                <%= link_to booking_accept_path(booking), class: 'no-deco' do %>
+                <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to confirm this booking?" } do %>
                   <div class="status">
                     <i class="far fa-check-circle"></i>
                     <p id="status-confirmed">Confirm</p>
                   </div>
                 <% end %>
-                <%= link_to booking_decline_path(booking), class: 'no-deco' do %>
+                <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to decline this booking?" } do %>
                   <div class="status">
                     <i class="far fa-times-circle"></i>
                     <p id="status-declined">Decline</p>
@@ -83,7 +83,7 @@
                     <i class="far fa-check-circle"></i>
                     <p id="status-confirmed">Confirm</p>
                   </div>
-                  <%= link_to booking_decline_path(booking), class: 'no-deco' do %>
+                  <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Declined'?" } do %>
                     <div class="status">
                       <i class="far fa-times-circle"></i>
                       <p id="status-declined">Decline</p>
@@ -92,7 +92,7 @@
                 </div>
               <% else booking.status == false %>
                 <div class="card-guest-status">
-                  <%= link_to booking_accept_path(booking), class: 'no-deco' do %>
+                  <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Confirmed'?" } do %>
                     <div class="status">
                       <i class="far fa-check-circle"></i>
                       <p id="status-confirmed">Confirm</p>

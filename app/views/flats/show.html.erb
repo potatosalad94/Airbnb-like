@@ -22,6 +22,43 @@
       <p><i class="fas fa-user-friends"></i> <%= @flat.max_guests %> guests</p>
       <hr>
       <p><%= @flat.description %></p>
+
+      <% if @flat.reviews.present? %>
+      <h2>Reviews</h2>
+      <hr>
+        <div class="reviews">
+          <% @flat.reviews.each do |review| %>
+            <div class="review">
+              <% if review.user.photo.present? %>
+                <%= cl_image_tag review.user.photo.key, class: 'avatar' %>
+              <% else %>
+                <%= image_tag "user.png", class: 'avatar' %>
+              <% end %>
+              <p class="description"><%= review.content %></p>
+              <p class="rating">
+                <% review.rating.times do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+              </p>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <hr>
+        <div class="review-form">
+          <%= simple_form_for [@flat, @review] do |f| %>
+            <%= f.input :rating, collection: 1..5 %>
+            <%= f.input :content, as: :text %>
+            <%= f.submit 'Add review', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      <% end %>
+
     </div>
     <div class="flat-booking border bg-light rounded">
       <h3><%= humanized_money @flat.price %>€ <span style="font-size: 13px;">per night</span></h3>

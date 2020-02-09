@@ -37,3 +37,25 @@
   margin: 5px 0;
   color: #484848;
 }
+
+.reviews hr:last-child{
+  display: none;
+}
+
+.review{
+  margin: 15px 0;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    align-self: flex-start;
+  }
+  .description{
+    margin: 0 auto 0 25px;
+    padding: 0 15px 0 0;
+  }
+  .rating{
+    margin: 0 10px 0 auto;
+    min-width: 120px;
+  }
+}

@@ -8,6 +8,8 @@ class FlatsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
+    @reviews = Review.all
   end
 
   def new
