@@ -1,5 +1,6 @@
 class Flat < ApplicationRecord
   has_many   :bookings
+  has_many :reviews
   belongs_to :user
   has_one_attached :photo
   monetize :price_in_cents, as: "price"
