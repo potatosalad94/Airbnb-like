@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   def index
-    @user_bookings = current_user.bookings
-    @user_flats = current_user.flats
+    @user_bookings = policy_scope(Booking)
+    @user_flats = policy_scope(Flat)
   end
 
   def show
@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.flat = @flat
     @booking.user = current_user
+    authorize @booking
     if @booking.save
       redirect_to flats_path
     else
@@ -31,6 +32,7 @@ class BookingsController < ApplicationController
   def accept_booking
     @booking = Booking.find(params[:booking_id])
     @booking.status = true
+    authorize @booking
     @booking.save
     redirect_to bookings_path
   end
@@ -38,6 +40,7 @@ class BookingsController < ApplicationController
   def decline_booking
     @booking = Booking.find(params[:booking_id])
     @booking.status = false
+    authorize @booking
     @booking.save
     redirect_to bookings_path
   end

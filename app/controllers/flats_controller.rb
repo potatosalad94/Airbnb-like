@@ -3,10 +3,10 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show]
 
   def index
-    @flats = Flat.all
+    @flats = policy_scope(Flat)
     @search = params[:search]
     if @search.present?
-      @flats = Flat.where("city ILIKE ?", "%#{@search}%")
+      @flats = policy_scope(Flat).where("city ILIKE ?", "%#{@search}%")
     end
   end
 
@@ -18,11 +18,13 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
+    authorize @flat
   end
 
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
+    authorize @flat
     if @flat.save
       redirect_to flat_path(@flat)
     else
@@ -34,6 +36,7 @@ class FlatsController < ApplicationController
 
   def set_flat
     @flat = Flat.find(params[:id])
+    authorize @flat
   end
 
   def flat_params
