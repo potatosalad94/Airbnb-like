@@ -15,7 +15,11 @@
           <p class="city"><%= @flat.city %></p>
         </div>
         <div class="flat-info-header-avatar">
-          <%= cl_image_tag @flat.user.photo.key, class: 'avatar' %>
+          <% if @flat.user.photo.blank? %>
+            <%= image_tag "user.png", class: 'avatar' %>
+          <% else %>
+            <%= cl_image_tag @flat.user.photo.key, class: 'avatar' %>
+          <% end %>
           <p class="owner"><%= @flat.user.first_name %></p>
         </div>
       </div>
@@ -48,16 +52,17 @@
           <% end %>
         </div>
       <% end %>
-      <% if user_signed_in? %>
-        <hr>
-        <div class="review-form">
-          <%= simple_form_for [@flat, @review] do |f| %>
-            <%= f.input :rating, collection: 1..5 %>
-            <%= f.input :content, as: :text %>
-            <%= f.submit 'Add review', class: 'btn btn-primary' %>
-          <% end %>
-        </div>
-      <% end %>
+
+
+      <hr>
+      <div class="review-form">
+        <%= simple_form_for [@flat, @review] do |f| %>
+          <%= f.input :rating, collection: 1..5 %>
+          <%= f.input :content, as: :text %>
+          <%= f.submit 'Add review', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+
 
     </div>
     <div class="flat-booking border bg-light rounded">
