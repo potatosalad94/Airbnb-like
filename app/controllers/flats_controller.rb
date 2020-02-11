@@ -1,6 +1,6 @@
 class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_flat, only: [:show]
+  before_action :set_flat, only: [:show, :edit, :update]
 
   def index
     @flats = policy_scope(Flat)
@@ -30,6 +30,21 @@ class FlatsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @flat.update(flat_params)
+      redirect_to flat_path(@flat)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+
   end
 
   private
