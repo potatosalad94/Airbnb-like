@@ -1,3 +1,9 @@
+<% if policy(@flat).edit? %>
+  <div class="container-fluid bg-light edit-bar">
+    <%= link_to "edit your flat", edit_flat_path(@flat) %>
+  </div>
+<% end %>
+
 <% if @flat.photo.blank? %>
   <div class="flat-banner" style="background-color: #46cdcf">
   </div>
