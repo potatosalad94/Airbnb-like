@@ -36,81 +36,83 @@
     <% end %>
   </div>
 
-  <div class="host-section">
-    <h1 class="page-title">My guests</h1>
-    <% @user_flats.each do |flat| %>
-      <% flat.bookings.each do |booking| %>
+  <% if current_user.admin %>
+    <div class="host-section">
+      <h1 class="page-title">My guests</h1>
+      <% @user_flats.each do |flat| %>
+        <% flat.bookings.each do |booking| %>
 
-        <div class="card-booking">
-          <% if booking.flat.photo.blank? %>
-            <div class="generic-flat">
-            </div>
-          <% else %>
-            <%= cl_image_tag booking.flat.photo.key %>
-          <% end %>
-
-          <div class="card-booking-infos">
-            <h2><%= booking.flat.name %></h2>
-            <p>Your guest's name: <%= booking.user.first_name %></p>
-            <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
-            <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
-          </div>
-
-
-          <% if booking.status == nil %>
-            <div class="card-booking-status-guest">
-              <p>Booking status</p>
-              <div class="card-guest-status">
-                <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to confirm this booking?" } do %>
-                  <div class="status">
-                    <i class="far fa-check-circle"></i>
-                    <p id="status-confirmed">Confirm</p>
-                  </div>
-                <% end %>
-                <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to decline this booking?" } do %>
-                  <div class="status">
-                    <i class="far fa-times-circle"></i>
-                    <p id="status-declined">Decline</p>
-                  </div>
-                <% end %>
+          <div class="card-booking">
+            <% if booking.flat.photo.blank? %>
+              <div class="generic-flat">
               </div>
+            <% else %>
+              <%= cl_image_tag booking.flat.photo.key %>
+            <% end %>
+
+            <div class="card-booking-infos">
+              <h2><%= booking.flat.name %></h2>
+              <p>Your guest's name: <%= booking.user.first_name %></p>
+              <p>Check-in: <b><%= booking.start_date.strftime("%A %d %B %Y") %></b></p>
+              <p>Check-out: Date: <b><%= booking.end_date.strftime("%A %d %B %Y") %></b></p>
             </div>
-          <% else %>
-            <div class="card-booking-status">
-              <% if booking.status == true %>
+
+
+            <% if booking.status == nil %>
+              <div class="card-booking-status-guest">
+                <p>Booking status</p>
                 <div class="card-guest-status">
-                  <div class="status-active">
-                    <i class="far fa-check-circle"></i>
-                    <p id="status-confirmed">Confirm</p>
-                  </div>
-                  <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Declined'?" } do %>
+                  <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to confirm this booking?" } do %>
+                    <div class="status">
+                      <i class="far fa-check-circle"></i>
+                      <p id="status-confirmed">Confirm</p>
+                    </div>
+                  <% end %>
+                  <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to decline this booking?" } do %>
                     <div class="status">
                       <i class="far fa-times-circle"></i>
                       <p id="status-declined">Decline</p>
                     </div>
                   <% end %>
                 </div>
-              <% else booking.status == false %>
-                <div class="card-guest-status">
-                  <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Confirmed'?" } do %>
-                    <div class="status">
+              </div>
+            <% else %>
+              <div class="card-booking-status">
+                <% if booking.status == true %>
+                  <div class="card-guest-status">
+                    <div class="status-active">
                       <i class="far fa-check-circle"></i>
                       <p id="status-confirmed">Confirm</p>
                     </div>
-                  <% end %>
-                  <div class="status-active">
-                    <i class="far fa-times-circle"></i>
-                    <p id="status-declined">Decline</p>
+                    <%= link_to booking_decline_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Declined'?" } do %>
+                      <div class="status">
+                        <i class="far fa-times-circle"></i>
+                        <p id="status-declined">Decline</p>
+                      </div>
+                    <% end %>
                   </div>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
+                <% else booking.status == false %>
+                  <div class="card-guest-status">
+                    <%= link_to booking_accept_path(booking), class: 'no-deco', data: { confirm: "Are you sure you want to change the booking status to 'Confirmed'?" } do %>
+                      <div class="status">
+                        <i class="far fa-check-circle"></i>
+                        <p id="status-confirmed">Confirm</p>
+                      </div>
+                    <% end %>
+                    <div class="status-active">
+                      <i class="far fa-times-circle"></i>
+                      <p id="status-declined">Decline</p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
 
-        </div>
+          </div>
 
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
 </div>

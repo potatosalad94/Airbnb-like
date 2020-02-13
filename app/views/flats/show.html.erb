@@ -1,8 +1,41 @@
 <% if policy(@flat).edit? %>
-  <div class="container-fluid bg-light edit-bar">
-    <%= link_to "edit your flat", edit_flat_path(@flat) %>
+  <div class="container-fluid edit-bar">
+    <!-- Bouton pour edit le flat -->
+    <%= link_to edit_flat_path(@flat), class: 'edit-bar-button' do %>
+      Edit your flat <i class="far fa-edit"></i>
+    <% end %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- Bouton declancheur de la modale -->
+    <div class="edit-bar-button" data-toggle="modal" data-target="#exampleModal">
+      Delete your flat <i class="far fa-trash-alt"></i>
+    </div>
   </div>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Deleting this flat will delete all current related bookings & reviews</p>
+        <p>Are you sure you want to delete your flat:</p>
+        <p><%= @flat.name %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <%= link_to flat_path(@flat), method: :delete do %>
+          <button type="button" class="btn btn-primary">Delete my flat</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% if @flat.photo.blank? %>
   <div class="flat-banner" style="background-color: #46cdcf">
@@ -33,9 +66,9 @@
       <hr>
       <p><%= @flat.description %></p>
 
-      <% if @flat.reviews.present? %>
       <h2>Reviews</h2>
       <hr>
+      <% if @flat.reviews.present? %>
         <div class="reviews">
           <% @flat.reviews.each do |review| %>
             <div class="review">
@@ -57,8 +90,9 @@
             <hr>
           <% end %>
         </div>
+      <% else %>
+      <i>There are no review for the moment</i>
       <% end %>
-
 
       <hr>
       <div class="review-form">
@@ -68,7 +102,6 @@
           <%= f.submit 'Add review', class: 'btn btn-primary' %>
         <% end %>
       </div>
-
 
     </div>
     <div class="flat-booking border bg-light rounded">
