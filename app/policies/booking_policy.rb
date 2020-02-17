@@ -10,10 +10,25 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def accept_booking?
-    record.flat.user == user
+    is_owner_or_admin?
   end
 
   def decline_booking?
-    record.flat.user == user
+    is_owner_or_admin?
   end
+
+  def update?
+    is_owner_or_admin?
+  end
+
+  def destroy?
+    is_owner_or_admin?
+  end
+
+  private
+
+  def is_owner_or_admin?
+    record.user == user || user.admin
+  end
+
 end

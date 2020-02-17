@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @flat = Flat.find(params[:flat_id])
+    authorize @review
     @review.user = current_user
     @review.flat = @flat
     if @review.save

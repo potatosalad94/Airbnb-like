@@ -1,15 +1,17 @@
 class BookingsController < ApplicationController
   def index
     @user_bookings = policy_scope(Booking)
-    @user_flats = policy_scope(Flat)
+    if current_user.admin
+      @user_flats = policy_scope(Flat)
+    end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   def create
-    @flat = Flat.find(params[:flat_id])
     @booking = Booking.new(booking_params)
+    @flat = Flat.find(params[:flat_id])
     @booking.flat = @flat
     @booking.user = current_user
     authorize @booking
@@ -20,14 +22,14 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-  end
+  # def update
+  # end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
   def accept_booking
     @booking = Booking.find(params[:booking_id])

@@ -61,15 +61,31 @@
     align-self: flex-start;
   }
   .description{
+    text-align: justify;
     margin: 0 auto 0 25px;
     padding: 0 15px 0 0;
   }
   .rating{
+    align-self: flex-start;
     margin: 0 10px 0 auto;
     min-width: 120px;
   }
 }
 
 .edit-bar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 6vh;
+  background-color: #FFF3CD;
+  .edit-bar-button{
+    cursor: pointer;
+    text-decoration: none;
+    color: #808080;
+    &:hover{
+      transition-timing-function: ease-in-out;
+      transition: 0.5s;
+      color: #000000;
+    }
+  }
 }
