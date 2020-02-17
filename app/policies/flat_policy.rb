@@ -2,6 +2,8 @@ class FlatPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
+      # pour avoir que les flats qui ont une lat et long mettre ceci a la place:
+      # scope.where.not(latitude: nil, longitude: nil)
     end
   end
 

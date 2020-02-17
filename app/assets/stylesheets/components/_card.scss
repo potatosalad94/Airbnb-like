@@ -6,6 +6,8 @@
 
 .cards {
   flex-grow: 1;
+  width: 50vw;
+  padding-right: 15px;
 }
 
 .card-category {
@@ -38,7 +40,7 @@
 
 .cards-query {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
 }
 
@@ -88,6 +90,6 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   .cards-query {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
