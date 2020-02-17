@@ -4,10 +4,13 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat)
-    @search = params[:search]
-    if @search.present?
-      @flats = policy_scope(Flat).where("city ILIKE ?", "%#{@search}%")
+    @markers = @flats.map do |flat|
+      { lat: flat.latitude, lng: flat.longitude }
     end
+    # @search = params[:search]
+    # if @search.present?
+    #   @flats = policy_scope(Flat).where("city ILIKE ?", "%#{@search}%")
+    # end
   end
 
   def show
