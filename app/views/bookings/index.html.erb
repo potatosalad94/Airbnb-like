@@ -36,6 +36,8 @@
     <% end %>
   </div>
 
+  <!-- Section host uniquement visible par l'admin -->
+
   <% if current_user.admin %>
     <div class="host-section">
       <h1 class="page-title">My guests</h1>
@@ -114,5 +116,7 @@
       <% end %>
     </div>
   <% end %>
+
+  <!-- fin de la section admin -->
 
 </div>
