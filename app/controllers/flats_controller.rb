@@ -5,7 +5,11 @@ class FlatsController < ApplicationController
   def index
     @flats = policy_scope(Flat)
     @markers = @flats.map do |flat|
-      { lat: flat.latitude, lng: flat.longitude }
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { flat: flat })
+      }
     end
     # @search = params[:search]
     # if @search.present?

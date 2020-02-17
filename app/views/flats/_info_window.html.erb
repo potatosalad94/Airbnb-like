@@ -1,0 +1,5 @@
+<% if flat.photo.present? %>
+  <%= cl_image_tag flat.photo.key, class:'img-fluid' %>
+<% end %>
+<h5><%= flat.name %></h5>
+<p><%= flat.address %></p>
