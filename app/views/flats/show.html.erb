@@ -93,15 +93,16 @@
       <% else %>
       <i>There are no review for the moment</i>
       <% end %>
-
-      <hr>
-      <div class="review-form">
-        <%= simple_form_for [@flat, @review] do |f| %>
-          <%= f.input :rating, collection: 1..5 %>
-          <%= f.input :content, as: :text %>
-          <%= f.submit 'Add review', class: 'btn btn-primary' %>
-        <% end %>
-      </div>
+      <% if policy(Review).create? %>
+        <hr>
+        <div class="review-form">
+          <%= simple_form_for [@flat, @review] do |f| %>
+            <%= f.input :rating, collection: 1..5 %>
+            <%= f.input :content, as: :text %>
+            <%= f.submit 'Add review', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      <% end %>
 
     </div>
     <div class="flat-booking border bg-light rounded">
