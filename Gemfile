@@ -19,6 +19,7 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'money-rails', '~>1.12'
 gem 'pundit'
 gem 'geocoder'
+gem 'activeadmin'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
