@@ -108,12 +108,24 @@
     <div class="flat-booking border bg-light rounded">
       <h3><%= humanized_money @flat.price %>€ <span style="font-size: 13px;">per night</span></h3>
       <hr>
-      <%= simple_form_for [@flat, @booking] do |f| %>
-        <%= f.input :start_date, as: :date, html5: true %>
-        <%= f.input :end_date,   as: :date, html5: true %>
-        <%= f.input :number_of_guests, collection: 1..@flat.max_guests, label: 'Number of guests' %>
-        <%= f.submit 'Book now', class: 'btn btn-primary btn-lg btn-block' %>
-      <% end %>
+
+      <!-- datepickr from online tuto -->
+      <div id='flat-booking-dates' data-unavailable="<%= @flat.unavailable_dates.to_json %>">
+        <%= simple_form_for([@flat, @booking]) do |f| %>
+          <%= f.input :start_date, as: :string, type: :text, id: 'startDateInput' %>
+          <%= f.input :end_date, as: :string, type: :text, id: 'endDateInput' %>
+          <%= f.input :number_of_guests, collection: 1..@flat.max_guests, label: 'Number of guests' %>
+          <%= f.submit 'Book now', class: 'btn btn-primary btn-lg btn-block' %>
+        <% end %>
+       </div>
+      <!-- end of datepickr -->
+
+      <%#= simple_form_for [@flat, @booking] do |f| %>
+        <%#= f.input :start_date, as: :date, html5: true %>
+        <%#= f.input :end_date,   as: :date, html5: true %>
+        <%#= f.input :number_of_guests, collection: 1..@flat.max_guests, label: 'Number of guests' %>
+        <%#= f.submit 'Book now', class: 'btn btn-primary btn-lg btn-block' %>
+      <%# end %>
     </div>
   </div>
 </div>
