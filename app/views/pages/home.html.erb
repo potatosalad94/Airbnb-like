@@ -5,9 +5,10 @@
       <div class="search-container">
         <%= simple_form_for :search, url: flats_path, method: :get do |f| %>
           <div class="search-form-control form-group">
-            <input class="form-control string required" type="text" name="search" id="search_query" />
+            <input type="search" class="form-control string required" name="search" id="address-input" placeholder="Where are we going?" />
+            <!--<input class="form-control string required" type="text" name="search" id="search_query" /> -->
             <button name="button" type="submit" class="btn btn-success">
-              <i class="fas fa-search"></i> Search
+            <i class="fas fa-search"></i> Search
             </button>
           </div>
         <% end %>
