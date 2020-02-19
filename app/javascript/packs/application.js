@@ -9,6 +9,6 @@ import { initMapbox } from '../plugins/init_mapbox'
 
 initMapbox();
 
-import { placesAutocomplete } from '../plugins/init_algolia'
+import { searchAddress } from '../plugins/init_algolia'
 
-placesAutocomplete();
+searchAddress();

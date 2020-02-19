@@ -26,6 +26,10 @@ class FlatPolicy < ApplicationPolicy
   private
 
   def is_owner_or_admin?
-    record.user == user || user.admin
+    if user == nil
+      false
+    else
+      record.user == user || user.admin
+    end
   end
 end

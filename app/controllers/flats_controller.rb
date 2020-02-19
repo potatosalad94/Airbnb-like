@@ -3,7 +3,11 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flats = policy_scope(Flat)
+   if params[:search].present?
+      @flats = policy_scope(Flat).near(params[:search], 20)
+    else
+      @flats = policy_scope(Flat)
+    end
     @markers = @flats.map do |flat|
       {
         lat: flat.latitude,
@@ -11,10 +15,6 @@ class FlatsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { flat: flat })
       }
     end
-    # @search = params[:search]
-    # if @search.present?
-    #   @flats = policy_scope(Flat).where("city ILIKE ?", "%#{@search}%")
-    # end
   end
 
   def show
